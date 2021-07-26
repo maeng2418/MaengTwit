@@ -1,0 +1,8 @@
+{
+  "name": "maeng-twit",
+  "version": "1.0.0",
+  "description": "twitter clone",
+  "main": "index.js",
+  "author": "Maeng",
+  "license": "MIT"
+}
