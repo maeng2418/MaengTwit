@@ -1,7 +1,21 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+// Application Container. 공통의 레이아웃을 작성
+import 'antd/dist/antd.css';
+import 'styles/nomalize.css';
+import { NextComponentType } from 'next';
+import { AppContext, AppInitialProps, AppProps } from 'next/app';
+import Head from 'next/head';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
-export default MyApp
+const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
+  Component,
+  pageProps,
+}) => {
+  return (
+    <>
+      <Head>
+        <title>MaengTwit</title>
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+};
+export default App;
