@@ -1,12 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { useState, ReactNode } from 'react';
 import Link from 'next/link';
 import { Menu, Input, Button, Row, Col } from 'antd';
+import { LoginForm } from 'components';
 
 interface IAppLayoutProps {
   children: ReactNode;
 }
 
 const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div>
       <Menu mode="horizontal">
@@ -40,7 +42,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
       */}
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          왼쪽 메뉴
+          {isLoggedIn ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
