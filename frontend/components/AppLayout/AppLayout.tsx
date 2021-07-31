@@ -2,7 +2,7 @@
 import React, { useState, ReactNode } from 'react';
 import Link from 'next/link';
 import { Menu, Input, Button, Row, Col } from 'antd';
-import { LoginForm } from 'components';
+import { LoginForm, UserProfile } from 'components';
 import { css } from '@emotion/react';
 
 interface IAppLayoutProps {
@@ -10,7 +10,7 @@ interface IAppLayoutProps {
 }
 
 const searchInput = css`
-  vertical-align: 'middle';
+  vertical-align: middle;
 `;
 
 const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
@@ -48,7 +48,11 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
       */}
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {isLoggedIn ? (
+            <UserProfile setIsLoggedIn={setIsLoggedIn} />
+          ) : (
+            <LoginForm setIsLoggedIn={setIsLoggedIn} />
+          )}
         </Col>
         <Col xs={24} md={12}>
           {children}

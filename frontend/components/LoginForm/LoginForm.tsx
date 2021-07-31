@@ -4,11 +4,15 @@ import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 
+interface ILoginFormProps {
+  setIsLoggedIn: (value: boolean) => void;
+}
+
 const buttonWrapper = css`
   margin-top: 10px;
 `;
 
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<ILoginFormProps> = ({ setIsLoggedIn }) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,8 +25,13 @@ const LoginForm: React.FC = () => {
     setPassword(e.target.value);
   }, []);
 
+  const onSubmitForm = useCallback(() => {
+    console.log(id, password);
+    setIsLoggedIn(true);
+  }, [id, password]);
+
   return (
-    <Form>
+    <Form onFinish={onSubmitForm}>
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
