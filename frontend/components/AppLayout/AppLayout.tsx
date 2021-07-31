@@ -1,11 +1,17 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState, ReactNode } from 'react';
 import Link from 'next/link';
 import { Menu, Input, Button, Row, Col } from 'antd';
 import { LoginForm } from 'components';
+import { css } from '@emotion/react';
 
 interface IAppLayoutProps {
   children: ReactNode;
 }
+
+const searchInput = css`
+  vertical-align: 'middle';
+`;
 
 const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,7 +29,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="mail">
-          <Input.Search enterButton style={{ verticalAlign: 'middle' }} />
+          <Input.Search enterButton css={searchInput} />
         </Menu.Item>
         <Menu.Item key="signup">
           <Link href="/signup">

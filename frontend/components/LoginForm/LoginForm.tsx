@@ -1,6 +1,12 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState, useCallback } from 'react';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
+import { css } from '@emotion/react';
+
+const buttonWrapper = css`
+  margin-top: 10px;
+`;
 
 const LoginForm: React.FC = () => {
   const [id, setId] = useState('');
@@ -33,12 +39,14 @@ const LoginForm: React.FC = () => {
           required
         />
       </div>
-      <Button type={'primary'} htmlType="submit" loading={false}>
-        로그인
-      </Button>
-      <Link href="/signup">
-        <a>회원가입</a>
-      </Link>
+      <div css={buttonWrapper}>
+        <Button type={'primary'} htmlType="submit" loading={false}>
+          로그인
+        </Button>
+        <Link href="/signup">
+          <a>회원가입</a>
+        </Link>
+      </div>
     </Form>
   );
 };
