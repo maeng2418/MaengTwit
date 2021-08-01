@@ -3,6 +3,7 @@ import React, { useState, useCallback } from 'react';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import { css } from '@emotion/react';
+import { useInput } from 'hooks';
 
 interface ILoginFormProps {
   setIsLoggedIn: (value: boolean) => void;
@@ -13,17 +14,8 @@ const LoginForm: React.FC<ILoginFormProps> = ({ setIsLoggedIn }) => {
     margin-top: 10px;
   `;
 
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
-
-  // 컴포넌트에 Props로 넘겨주는 함수는 useCallback을 써서 최적화하자!!
-  const onChangeId = useCallback((e) => {
-    setId(e.target.value);
-  }, []);
-
-  const onChangePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
+  const [id, onChangeId] = useInput('');
+  const [password, onChangePassword] = useInput('');
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
