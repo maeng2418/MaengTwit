@@ -8,11 +8,11 @@ interface ILoginFormProps {
   setIsLoggedIn: (value: boolean) => void;
 }
 
-const buttonWrapper = css`
-  margin-top: 10px;
-`;
-
 const LoginForm: React.FC<ILoginFormProps> = ({ setIsLoggedIn }) => {
+  const buttonWrapper = css`
+    margin-top: 10px;
+  `;
+
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 

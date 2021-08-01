@@ -1,15 +1,30 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { AppLayout } from 'components';
+import { AppLayout, NicknameEditForm, FollowList } from 'components';
 
 const Profile: NextPage = () => {
+  const followingList = [
+    { nickname: 'Maeng Kim' },
+    { nickname: 'Aesop Kim' },
+    { nickname: 'Mick Lee' },
+  ];
+  const followerList = [
+    { nickname: 'Maeng Kim' },
+    { nickname: 'Aesop Kim' },
+    { nickname: 'Mick Lee' },
+  ];
+
   return (
-    <AppLayout>
+    <>
       <Head>
         <title>내 프로필 | MaengTwit</title>
       </Head>
-      <div>내 프로필</div>
-    </AppLayout>
+      <AppLayout>
+        <NicknameEditForm />
+        <FollowList header="팔로잉 목록" data={followingList} />
+        <FollowList header="팔로워 목록" data={followerList} />
+      </AppLayout>
+    </>
   );
 };
 

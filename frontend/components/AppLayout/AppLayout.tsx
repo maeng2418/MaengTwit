@@ -9,11 +9,11 @@ interface IAppLayoutProps {
   children: ReactNode;
 }
 
-const searchInput = css`
-  vertical-align: middle;
-`;
-
 const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
+  const searchInput = css`
+    vertical-align: middle;
+  `;
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div>
