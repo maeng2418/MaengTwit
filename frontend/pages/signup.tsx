@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { AppLayout } from 'components';
 import { Form, Input, Checkbox, Button } from 'antd';
 import { useInput } from 'hooks';
 import { css } from '@emotion/react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { signUp } from 'store/slices/user';
+import { State } from 'store';
 const Signup: NextPage = () => {
   const errorStyle = css`
     color: red;
@@ -20,6 +23,17 @@ const Signup: NextPage = () => {
   const [password, onChangePassword] = useInput('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: State) => state.user);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      alert('로그인했으니 메인페이지로 이동합니다.');
+      router.push('/');
+    }
+  }, [user && user.id]);
 
   const onChangePasswordCheck = useCallback(
     (e) => {
@@ -44,7 +58,13 @@ const Signup: NextPage = () => {
     if (!term) {
       return setTermError(true);
     }
-    console.log(`${id}: ${nickname}님 가입 완료!`);
+    dispatch(
+      signUp({
+        id,
+        password,
+        nickname,
+      }),
+    );
   }, [password, passwordCheck, term]);
 
   return (

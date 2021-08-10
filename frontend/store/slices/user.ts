@@ -15,12 +15,12 @@ const slice = createSlice({
   initialState: initialState,
   reducers: {
     signUp: (state, { payload }) => {
-      state.signUpData = payload.data;
+      state.signUpData = payload;
     },
     login: (state, { payload }) => {
       state.isLoggedIn = true;
       state.user = dummyData.user as IUser;
-      state.loginData = payload.data;
+      state.loginData = payload;
     },
     logout: (state) => {
       state.isLoggedIn = false;
