@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { Menu, Input, Button, Row, Col } from 'antd';
 import { LoginForm, UserProfile } from 'components';
 import { css } from '@emotion/react';
+import { useSelector } from 'react-redux';
+import { State } from 'store';
 
 interface IAppLayoutProps {
   children: ReactNode;
@@ -14,7 +16,8 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
     vertical-align: middle;
   `;
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useSelector((state: State) => state.user);
+
   return (
     <div>
       <Menu mode="horizontal">
@@ -48,11 +51,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
       */}
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? (
-            <UserProfile setIsLoggedIn={setIsLoggedIn} />
-          ) : (
-            <LoginForm setIsLoggedIn={setIsLoggedIn} />
-          )}
+          {isLoggedIn ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}

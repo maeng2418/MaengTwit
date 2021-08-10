@@ -1,0 +1,19 @@
+{
+  "user": {
+    "id": 1,
+    "nickname": "Maeng",
+    "Posts": [],
+    "Followings": [],
+    "Followers": []
+  },
+  "post": {
+    "id": 2,
+    "content": "더미데이터입니다.",
+    "User": {
+      "id": 1,
+      "nickname": "제로초"
+    },
+    "Images": [],
+    "Comments": []
+  }
+}

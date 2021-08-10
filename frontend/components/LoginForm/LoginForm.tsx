@@ -4,22 +4,25 @@ import { Form, Input, Button } from 'antd';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 import { useInput } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { login } from 'store/slices/user';
 
-interface ILoginFormProps {
-  setIsLoggedIn: (value: boolean) => void;
-}
-
-const LoginForm: React.FC<ILoginFormProps> = ({ setIsLoggedIn }) => {
+const LoginForm: React.FC = () => {
   const buttonWrapper = css`
     margin-top: 10px;
   `;
 
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
+  const dispatch = useDispatch();
 
   const onSubmitForm = useCallback(() => {
-    console.log(id, password);
-    setIsLoggedIn(true);
+    dispatch(
+      login({
+        id,
+        password,
+      }),
+    );
   }, [id, password]);
 
   return (

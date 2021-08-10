@@ -4,6 +4,7 @@ import 'styles/nomalize.css';
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
+import wrapper from 'store';
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   Component,
@@ -18,4 +19,4 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
     </>
   );
 };
-export default App;
+export default wrapper.withRedux(App);
