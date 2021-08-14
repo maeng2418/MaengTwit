@@ -9,8 +9,8 @@ import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { State } from 'store';
 import { IPost } from 'assets/types';
-import { Button, Popover, Card } from 'antd';
-import { PostImages } from 'components';
+import { Button, Popover, Card, List, Comment } from 'antd';
+import { CommentForm, PostImages } from 'components';
 import Avatar from 'antd/lib/avatar/avatar';
 
 interface IPostCard {
@@ -54,9 +54,6 @@ const PostCard: React.FC<IPostCard> = ({ post }) => {
             }
           >
             <EllipsisOutlined />
-            {commentFormOpened && <div>댓글입력</div>}
-            {/* <CommentForm />
-            <Comments /> */}
           </Popover>,
         ]}
       >
@@ -66,6 +63,25 @@ const PostCard: React.FC<IPostCard> = ({ post }) => {
           description={post.content}
         />
       </Card>
+      {commentFormOpened && (
+        <div>
+          <CommentForm post={post} />
+          <List
+            header={`${post.Comments.length}개의 댓글`}
+            itemLayout="horizontal"
+            dataSource={post.Comments}
+            renderItem={(item) => (
+              <li>
+                <Comment
+                  author={item.User.nickname}
+                  avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                  content={item.content}
+                />
+              </li>
+            )}
+          ></List>
+        </div>
+      )}
     </div>
   );
 };

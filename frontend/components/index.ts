@@ -6,3 +6,4 @@ export { default as FollowList } from './FollowList';
 export { default as PostForm } from './PostForm';
 export { default as PostCard } from './PostCard';
 export { default as PostImages } from './PostImages';
+export { default as CommentForm } from './CommentForm';
