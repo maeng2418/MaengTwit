@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import { Menu, Input, Button, Row, Col } from 'antd';
 import { LoginForm, UserProfile } from 'components';
-import { css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { State } from 'store';
 
@@ -16,10 +16,24 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
     vertical-align: middle;
   `;
 
+  const globalStyle = css`
+    .ant-row {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+    .ant-col:first-child {
+      padding-left: 0 !important;
+    }
+    .ant-col:last-child {
+      padding-right: 0 !important;
+    }
+  `;
+
   const { isLoggedIn } = useSelector((state: State) => state.user);
 
   return (
     <div>
+      <Global styles={globalStyle} />
       <Menu mode="horizontal">
         <Menu.Item key="home">
           <Link href="/">
