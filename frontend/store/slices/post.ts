@@ -10,7 +10,7 @@ const initialState = {
         id: 1,
         nickname: 'Maeng Kim',
       },
-      content: '첫 번째 게시글',
+      content: '첫 번째 게시글 #해시태그 #게시글 ###좋아요 구독설정',
       Images: [
         {
           src: 'https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726',

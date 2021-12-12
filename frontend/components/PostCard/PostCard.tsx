@@ -5,13 +5,14 @@ import {
   MessageOutlined,
   RetweetOutlined,
 } from '@ant-design/icons';
+import { Button, Card, Comment, List, Popover } from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
+import { IPost } from 'assets/types';
+import { CommentForm, PostImages } from 'components';
 import React, { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { State } from 'store';
-import { IPost } from 'assets/types';
-import { Button, Popover, Card, List, Comment } from 'antd';
-import { CommentForm, PostImages } from 'components';
-import Avatar from 'antd/lib/avatar/avatar';
+import PostCardContent from './PostCardContent';
 
 interface IPostCard {
   post: IPost;
@@ -60,7 +61,7 @@ const PostCard: React.FC<IPostCard> = ({ post }) => {
         <Card.Meta
           avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
           title={post.User.nickname}
-          description={post.content}
+          description={<PostCardContent postData={post.content} />}
         />
       </Card>
       {commentFormOpened && (
